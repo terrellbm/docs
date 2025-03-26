@@ -1,0 +1,43 @@
+---
+title: 'CUA Best Practices'
+description: 'Best practices for computer use agents'
+---
+
+### Write good prompts
+
+Reliability is still not great for computer-use agents. If you want better reliability, the best thing is to write **GOOD** prompts and **SPLIT** up your big prompts/tasks into smaller chunks
+
+Good prompts generally have the following properties: 
+  - **STOP** conditions (e.g., You should ALWAYS stop when you see the bottom of the page)
+  - **INTERACTION** conditions (e.g., You should NEVER scroll up)
+  - **RETURN** format/structure (e.g., Always return a JSON object with this structure 'example' : ['value1', 'value2'])
+
+Here's an example of this prompting in action:
+  ```python
+  user_prompt = f"""
+    # AGENT INSTRUCTIONS #
+    You are currently on www.amazon.com
+
+    Search for 'sponge cake plush'
+
+    Click on the third product on the page
+
+    Add the product to your cart
+
+    # INTERACTION INSTRUCTIONS # 
+    YOU SHOULD ONLY NEED TO SCROLL DOWN OR CLICK. NEVER DO ANYTHING ELSE
+    WHEN YOU SCROLL DOWN, YOU SHOULD ALWAYS DO IT AT MOST ONCE ON A GIVEN PAGE  
+
+    # ROADBLOCKS #
+    If you encounter a CAPTCHA, you should ALWAYS ask the user to give you the answer to the CAPTCHA or take over [You likely need to take over on your VNC viewer until we add CAPTCHA support]
+
+    # STOPPING CONDITION # 
+    You are STRICTLY ONLY done until you have added the product to the cart 
+    """
+  ```
+
+### Have a VNC viewer open as you developer
+When building your agents with spongecake, we recommend having your VM pulled up in a VNC viewer so you can jump in and control the desktop if needed. See `Connecting to desktop` in the quickstart
+
+### Concurrency
+Think about what tasks can be done concurrently. E.g., can multiple agents work together to fill out a form? Or what if agent 1 performs actions on page 1, agent 2 performs actions on page 2, and so forth? We're working on making it easier to spin up agents concurrently 

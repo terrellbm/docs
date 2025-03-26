@@ -4,13 +4,9 @@ description: 'Below is the **Desktop** class, which provides functionality for m
 icon: 'gear'
 ---
 
-
-## Desktop Client Documentation
-
-
----
-
-## Class: `Desktop`
+### Class Overview
+<AccordionGroup>
+<Accordion icon="message-bot" title="Desktop Class">
 
 **Arguments**:
 1. **name** *(str)*: A unique name for the container. Defaults to `"newdesktop"`. This should be unique for different containers
@@ -25,8 +21,11 @@ icon: 'gear'
 
 **Description**: Creates a Docker client, sets up container parameters, and initializes an internal OpenAI client for agent integration.
 
----
-
+</Accordion>
+</AccordionGroup>
+### Functions
+<AccordionGroup>
+<Accordion icon="message-bot" title="start()">
 ### **`start()`**
 
 ```python
@@ -52,8 +51,9 @@ def start(self) -> Container:
 **Exceptions**:
 - **RuntimeError** if it fails to find or pull the specified image
 - **docker.errors.APIError** For any issue with running the container
----
 
+</Accordion>
+<Accordion icon="message-bot" title="stop()">
 ### **`stop()`**
 
 ```python
@@ -71,8 +71,8 @@ def stop(self) -> None:
 **Returns**:
 - `None`
 
----
-
+</Accordion>
+<Accordion icon="message-bot" title="exec(command)">
 ### **`exec(command)`**
 
 ```python
@@ -98,3 +98,5 @@ A dictionary with:
   "returncode": (integer exit code)
 }
 ```
+</Accordion>
+</AccordionGroup>

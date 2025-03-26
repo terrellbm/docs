@@ -4,7 +4,9 @@ description: 'Below are desktop actions that can be performed by the Desktop cla
 icon: 'gear'
 ---
 
-### **`click(x, y, click_type="left")`**
+### Functions
+<AccordionGroup>
+<Accordion icon="message-bot" title="click(x, y, click_type='left')">
 
 ```python
 def click(self, x: int, y: int, click_type: str = "left") -> None:
@@ -20,8 +22,9 @@ def click(self, x: int, y: int, click_type: str = "left") -> None:
 
 **Returns**:
 - `None`
+</Accordion>
 
-### **`scroll(x, y, scroll_x=0, scroll_y=0)`**
+<Accordion icon="message-bot" title="scroll(x, y, scroll_x=0, scroll_y=0)">
 
 ```python
 def scroll(
@@ -52,7 +55,12 @@ def scroll(
 **Returns**:
 - `None`
 
-### **`keypress(keys: list[str])`**
+
+
+</Accordion>
+
+
+<Accordion icon="message-bot" title="keypress(keys: list[str])">
 
 ```python
 def keypress(self, keys: list[str]) -> None:
@@ -71,7 +79,9 @@ def keypress(self, keys: list[str]) -> None:
 **Returns**:
 - `None`
 
-### **`type_text(text: str)`**
+
+</Accordion>
+<Accordion icon="message-bot" title="type_text(text: str)">
 
 ```python
 def type_text(self, text: str) -> None:
@@ -89,8 +99,9 @@ def type_text(self, text: str) -> None:
 **Returns**:
 - `None`
 
-### **`get_screenshot()`**
 
+</Accordion>
+<Accordion icon="message-bot" title="get_screenshot()">
 ```python
 def get_screenshot(self) -> str:
     """
@@ -109,9 +120,8 @@ def get_screenshot(self) -> str:
 
 **Exceptions**:
 - **RuntimeError** if the screenshot command fails.
-
-### **`goto(url)`**
-
+</Accordion>
+<Accordion icon="message-bot" title="goto(url)">
 ```python
 def goto(self, url: str) -> None:
     """
@@ -127,3 +137,5 @@ def goto(self, url: str) -> None:
 
 **Returns**:
 - `None`
+</Accordion>
+</AccordionGroup>

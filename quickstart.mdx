@@ -56,5 +56,22 @@ You’ll need the following to get started (click to download):
 
    If your on MacOS, this should automatically open a VNC window to your VM
 </Accordion>
+<Accordion icon="camera" title="View your desktop">
+**If you're working on a mac**:
+1. Right click `Finder` and select `Connect to server...`  
+      OR  
+   In the `Finder` window, navigate to `Go > Connect to server...` in the menu bar
+2. Enter the VNC host and port - should be `vnc://localhost:5900` in the default container
+3. It will ask for a password, which will be set to "`secret`" in the default docker container
+4. Your mac will connect to the VNC server. You can view and control the container's desktop through here
+
+**Other options**:
+1. **Install a VNC Viewer**, such as [TigerVNC](https://tigervnc.org/) or [RealVNC](https://www.realvnc.com/en/connect/download/viewer/).
+2. **Open the VNC client** and connect to:
+   ```
+   localhost:5900
+   ```
+3. Enter the password when needed (set to "`secret`" in the default docker container).
+</Accordion>
 
 </AccordionGroup>

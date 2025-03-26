@@ -16,21 +16,25 @@
           {
             "group": "Get Started",
             "pages": [
-              "quickstart"
+              "quickstart",
+              "best_practices"
             ]
           },
           {
             "group": "Examples",
             "pages": [
-              "examples/linkedin_example"
+              "examples/linkedin_example",
+              "examples/amazon_example",
+              "examples/form_filling_example"
             ]
           },
           {
-            "group": "Desktop Client",
+            "group": "Documentation",
             "pages": [
               "desktop-client/desktop",
               "desktop-client/desktop_actions",
-              "desktop-client/openai_agent_integration"
+              "desktop-client/openai_agent_integration",
+              "desktop-client/custom_docker_container"
             ]
           },
           
