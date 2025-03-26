@@ -1,0 +1,100 @@
+---
+title: 'Desktop Class'
+description: 'Below is the **Desktop** class, which provides functionality for managing and interacting with a Docker container that simulates a Linux desktop environment. This class enables you to control mouse/keyboard actions, retrieve screenshots, and integrate with OpenAI for higher-level agent logic.'
+icon: 'gear'
+---
+
+
+## Desktop Client Documentation
+
+
+---
+
+## Class: `Desktop`
+
+**Arguments**:
+1. **name** *(str)*: A unique name for the container. Defaults to `"newdesktop"`. This should be unique for different containers
+2. **docker_image** *(str)*: The Docker image name to pull/run if not already available. Defaults to `"spongebox/spongecake:latest"`.
+3. **vnc_port** *(int)*: The host port mapped to the container’s VNC server. Defaults to **5900**.
+4. **api_port** *(int)*: The host port mapped to the container’s internal API. Defaults to **8000**.
+5. **openai_api_key** *(str)*: An optional API key for OpenAI. If not provided, the class attempts to read `OPENAI_API_KEY` from the environment.
+
+**Raises**:
+- **SpongecakeException** if any port is in use.
+- **SpongecakeException** if no OpenAI API key is supplied.
+
+**Description**: Creates a Docker client, sets up container parameters, and initializes an internal OpenAI client for agent integration.
+
+---
+
+### **`start()`**
+
+```python
+def start(self) -> Container:
+    """
+    Starts the container if it's not already running.
+    """
+```
+
+**Behavior**:
+- Starts the docker container thats initialized in the Desktop() constructor
+- Checks if a container with the specified `name` already exists.
+- If the container exists but is not running, it starts it.  
+  Note: In this case, it will not pull the latest image
+- If the container does not exist, the method attempts to run it:
+  - It will attempt to pull the latest image before starting the container
+- Waits a short time (2 seconds) for services to initialize.
+- Returns the running container object.
+
+**Returns**:
+- A Docker `Container` object representing the running container.
+
+**Exceptions**:
+- **RuntimeError** if it fails to find or pull the specified image
+- **docker.errors.APIError** For any issue with running the container
+---
+
+### **`stop()`**
+
+```python
+def stop(self) -> None:
+    """
+    Stops and removes the container.
+    """
+```
+
+**Behavior**:
+- Stops + removes the container.
+- Prints a status message.
+- If the container does not exist, prints a warning.
+
+**Returns**:
+- `None`
+
+---
+
+### **`exec(command)`**
+
+```python
+def exec(self, command: str) -> dict:
+    """
+    Runs a shell command inside the container.
+    """
+```
+
+**Arguments**:
+- **command** *(str)*: The shell command to execute.
+
+**Behavior**:
+- Runs a shell command in the docker container
+- Captures stdout and stderr.
+- Logs the command output.
+
+**Returns**:
+A dictionary with:
+```json
+{
+  "result": (string output),
+  "returncode": (integer exit code)
+}
+```

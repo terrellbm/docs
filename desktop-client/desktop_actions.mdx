@@ -1,0 +1,129 @@
+---
+title: 'Desktop Actions'
+description: 'Below are desktop actions that can be performed by the Desktop class.'
+icon: 'gear'
+---
+
+### **`click(x, y, click_type="left")`**
+
+```python
+def click(self, x: int, y: int, click_type: str = "left") -> None:
+    """
+    Move the mouse to (x, y) and click the specified button.
+    click_type can be 'left', 'middle', or 'right'.
+    """
+```
+
+**Arguments**:
+- **x, y** *(int)*: The screen coordinates to move the mouse.
+- **click_type** *(str)*: The mouse button to click (`"left"`, `"middle"`, or `"right"`).
+
+**Returns**:
+- `None`
+
+### **`scroll(x, y, scroll_x=0, scroll_y=0)`**
+
+```python
+def scroll(
+    self,
+    x: int,
+    y: int,
+    scroll_x: int = 0,
+    scroll_y: int = 0
+) -> None:
+    """
+    Move to (x, y) and scroll horizontally or vertically.
+    """
+```
+
+**Arguments**:
+- **x, y** *(int)*: The screen coordinates to move the mouse.
+- **scroll_x** *(int)*: Horizontal scroll offset.
+  - Negative => Scroll left (button 6)
+  - Positive => Scroll right (button 7)
+- **scroll_y** *(int)*: Vertical scroll offset.
+  - Negative => Scroll up (button 4)
+  - Positive => Scroll down (button 5)
+
+**Behavior**:
+- Moves the mouse to `(x, y)`.
+- Scrolls by scroll_x and scroll_y
+
+**Returns**:
+- `None`
+
+### **`keypress(keys: list[str])`**
+
+```python
+def keypress(self, keys: list[str]) -> None:
+    """
+    Press (and possibly hold) keys in sequence.
+    """
+```
+
+**Arguments**:
+- **keys** *(list[str])*: A list of keys to press. Example: `["CTRL", "f"]` for Ctrl+F.
+
+**Behavior**:
+- Executes a keypress
+- Supports shortcuts like Ctrl+Fs
+
+**Returns**:
+- `None`
+
+### **`type_text(text: str)`**
+
+```python
+def type_text(self, text: str) -> None:
+    """
+    Type a string of text (like using a keyboard) at the current cursor location.
+    """
+```
+
+**Arguments**:
+- **text** *(str)*: The string of text to type.
+
+**Behavior**:
+- Types a string of text at the current cursor location.
+
+**Returns**:
+- `None`
+
+### **`get_screenshot()`**
+
+```python
+def get_screenshot(self) -> str:
+    """
+    Takes a screenshot of the current desktop.
+    Returns the base64-encoded PNG screenshot.
+    """
+```
+
+**Behavior**:
+- Takes a screenshot as a png
+- Captures the base64 result.
+- Returns that base64 string.
+
+**Returns**:
+- *(str)*: A base64-encoded PNG screenshot.
+
+**Exceptions**:
+- **RuntimeError** if the screenshot command fails.
+
+### **`goto(url)`**
+
+```python
+def goto(self, url: str) -> None:
+    """
+    Open Firefox in the container and navigate to the specified URL in a new tab.
+    """
+```
+
+**Arguments**:
+- **url** *(str)*: The URL to navigate to (e.g., `https://example.com`).
+
+**Behavior**:
+- Opens Firefox in the container and navigates to the specified URL in a new tab
+
+**Returns**:
+- `None`
