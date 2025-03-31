@@ -49,8 +49,8 @@
     ]
   },
   "logo": {
-    "light": "/logo/spongecake-logo-light.svg?v=2",
-    "dark": "/logo/spongecake-logo-dark.svg?v=2"
+    "light": "/logo/spongecake-logo-light-v2.svg",
+    "dark": "/logo/spongecake-logo-dark-v2.svg"
   },
   "navbar": {
     "links": [
