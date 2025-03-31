@@ -11,3 +11,7 @@
     height: 3rem !important;
     margin-left: -15px;
 }
+
+html:not(.dark) #sidebar {
+    background-color: #fcfcfc;
+}
