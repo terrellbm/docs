@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart'
+title: 'Quickstart (MacOS)'
 description: 'Start building computer use agents in under 5 minutes'
 ---
 
@@ -13,65 +13,46 @@ description: 'Start building computer use agents in under 5 minutes'
   src="/images/spongecake-social-preview-dark-v2.png"
   alt="Spongecake Dark"
 />
-## Prerequisites
 
-You’ll need the following to get started (click to download):
-- [**Docker**](https://docs.docker.com/get-docker/)  
-- [**OpenAI API Key**](https://platform.openai.com/settings/)
-
-<AccordionGroup>
-<Accordion icon="message-bot" title="Clone the repo">
-     ```bash
-   git clone https://github.com/aditya-nadkarni/spongecake.git
-   ```
-</Accordion>
-<Accordion icon="laptop" title="Set up environment">
-  Set up a Python virtual environment and install the spongecake package:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows, use venv\Scripts\activate
-
-   python3 -m pip install --upgrade spongecake
-   python3 -m pip install --upgrade dotenv
-   python3 -m pip install --upgrade openai  
-   ```
-
-  Set up environment variables
+<Tabs>
+<Tab title="MacOS">
+<Steps>
+  <Step title="Clone spongecake">
+    In terminal, run
     ```bash
-    cd examples 
-    cp .env.example .env
+    git clone https://github.com/aditya-nadkarni/spongecake.git
+    cd spongecake
     ```
+  </Step>
+  <Step title="Run the setup script">
+    Open a terminal to the spongecake directory and run
+    ```bash
+    chmod +x setup.sh  # May be required on Unix/macOS
+    ./setup.sh
+    ```
+    This will check for dependencies, set-up a virtual environment, and help you set-up necessary API keys
+  </Step>
+  <Step title="Run the backend and frontend">
+    In the spongecake directory, run:
+    ```bash
+    cd spongecake-ui
+    cd frontend
+    npm run dev
+    ```
+    In a new terminal, run:
+    ```bash
+    cd spongecake-ui
+    cd backend
+    python server.py
+    ```
+  </Step>
+</Steps>
+</Tab>
+<Tab title="Windows">
+Coming soon
+</Tab>
+<Tab title="Linux">
+Coming soon
+</Tab>
+</Tabs>
 
-  In the .env file, update the OPENAI_API_KEY from [OpenAI](https://platform.openai.com/settings) (find API keys in the left nav bar)
-  ```bash
-  OPENAI_API_KEY=your_api_key
-  ```
-</Accordion>
-<Accordion icon="rocket" title="Run your first script">
-  MacOS: Make sure docker desktop is running 
-
-   ```bash
-   python3 example.py
-   ```
-
-   If your on MacOS, this should automatically open a VNC window to your VM
-</Accordion>
-<Accordion icon="camera" title="View your desktop">
-**If you're working on a mac**:
-1. Right click `Finder` and select `Connect to server...`  
-      OR  
-   In the `Finder` window, navigate to `Go > Connect to server...` in the menu bar
-2. Enter the VNC host and port - should be `vnc://localhost:5900` in the default container
-3. It will ask for a password, which will be set to "`secret`" in the default docker container
-4. Your mac will connect to the VNC server. You can view and control the container's desktop through here
-
-**Other options**:
-1. **Install a VNC Viewer**, such as [TigerVNC](https://tigervnc.org/) or [RealVNC](https://www.realvnc.com/en/connect/download/viewer/).
-2. **Open the VNC client** and connect to:
-   ```
-   localhost:5900
-   ```
-3. Enter the password when needed (set to "`secret`" in the default docker container).
-</Accordion>
-
-</AccordionGroup>
