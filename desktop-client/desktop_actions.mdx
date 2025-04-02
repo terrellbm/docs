@@ -1,141 +1,152 @@
 ---
 title: 'Desktop Actions'
 description: 'Below are desktop actions that can be performed by the Desktop class.'
-icon: 'gear'
+icon: 'bolt'
 ---
 
 ### Functions
 <AccordionGroup>
-<Accordion icon="message-bot" title="click(x, y, click_type='left')">
+    <Accordion icon="message-bot" title="click(x, y, click_type='left')">
+        ```python
+        def click(self, x: int, y: int, click_type: str = "left") -> None:
+            """
+            Move the mouse to (x, y) and click the specified button.
+            click_type can be 'left', 'middle', or 'right'.
+            """
+        ```
 
-```python
-def click(self, x: int, y: int, click_type: str = "left") -> None:
-    """
-    Move the mouse to (x, y) and click the specified button.
-    click_type can be 'left', 'middle', or 'right'.
-    """
-```
+        **Arguments**:
+        - **x, y** *(int)*: The screen coordinates to move the mouse.
+        - **click_type** *(str)*: The mouse button to click (`"left"`, `"middle"`, or `"right"`).
 
-**Arguments**:
-- **x, y** *(int)*: The screen coordinates to move the mouse.
-- **click_type** *(str)*: The mouse button to click (`"left"`, `"middle"`, or `"right"`).
+        **Returns**:
+        - `None`
+    </Accordion>
+    <Accordion icon="message-bot" title="scroll(x, y, scroll_x=0, scroll_y=0)">
+        ```python
+        def scroll(
+            self,
+            x: int,
+            y: int,
+            scroll_x: int = 0,
+            scroll_y: int = 0
+        ) -> None:
+            """
+            Move to (x, y) and scroll horizontally or vertically.
+            """
+        ```
 
-**Returns**:
-- `None`
-</Accordion>
+        **Arguments**:
+        - **x, y** *(int)*: The screen coordinates to move the mouse.
+        - **scroll_x** *(int)*: Horizontal scroll offset.
+        - Negative => Scroll left (button 6)
+        - Positive => Scroll right (button 7)
+        - **scroll_y** *(int)*: Vertical scroll offset.
+        - Negative => Scroll up (button 4)
+        - Positive => Scroll down (button 5)
 
-<Accordion icon="message-bot" title="scroll(x, y, scroll_x=0, scroll_y=0)">
+        **Behavior**:
+        - Moves the mouse to `(x, y)`.
+        - Scrolls by scroll_x and scroll_y
 
-```python
-def scroll(
-    self,
-    x: int,
-    y: int,
-    scroll_x: int = 0,
-    scroll_y: int = 0
-) -> None:
-    """
-    Move to (x, y) and scroll horizontally or vertically.
-    """
-```
+        **Returns**:
+        - `None`
+    </Accordion>
+    <Accordion icon="message-bot" title="keypress(keys: list[str])">
+        ```python
+        def keypress(self, keys: list[str]) -> None:
+            """
+            Press (and possibly hold) keys in sequence.
+            """
+        ```
 
-**Arguments**:
-- **x, y** *(int)*: The screen coordinates to move the mouse.
-- **scroll_x** *(int)*: Horizontal scroll offset.
-  - Negative => Scroll left (button 6)
-  - Positive => Scroll right (button 7)
-- **scroll_y** *(int)*: Vertical scroll offset.
-  - Negative => Scroll up (button 4)
-  - Positive => Scroll down (button 5)
+        **Arguments**:
+        - **keys** *(list[str])*: A list of keys to press. Example: `["CTRL", "f"]` for Ctrl+F.
 
-**Behavior**:
-- Moves the mouse to `(x, y)`.
-- Scrolls by scroll_x and scroll_y
+        **Behavior**:
+        - Executes a keypress
+        - Supports shortcuts like Ctrl+Fs
 
-**Returns**:
-- `None`
+        **Returns**:
+        - `None`
+    </Accordion>
+    <Accordion icon="message-bot" title="type_text(text: str)">
+        ```python
+        def type_text(self, text: str) -> None:
+            """
+            Type a string of text (like using a keyboard) at the current cursor location.
+            """
+        ```
 
+        **Arguments**:
+        - **text** *(str)*: The string of text to type.
 
+        **Behavior**:
+        - Types a string of text at the current cursor location.
 
-</Accordion>
+        **Returns**:
+        - `None`
+    </Accordion>
+    <Accordion icon="message-bot" title="get_screenshot()">
+        ```python
+        def get_screenshot(self) -> str:
+            """
+            Takes a screenshot of the current desktop.
+            Returns the base64-encoded PNG screenshot.
+            """
+        ```
 
+        **Behavior**:
+        - Takes a screenshot as a png
+        - Captures the base64 result.
+        - Returns that base64 string.
 
-<Accordion icon="message-bot" title="keypress(keys: list[str])">
+        **Returns**:
+        - *(str)*: A base64-encoded PNG screenshot.
 
-```python
-def keypress(self, keys: list[str]) -> None:
-    """
-    Press (and possibly hold) keys in sequence.
-    """
-```
+        **Exceptions**:
+        - **RuntimeError** if the screenshot command fails.
+    </Accordion>
+    <Accordion icon="message-bot" title="goto(url)">
+        ```python
+        def goto(self, url: str) -> None:
+            """
+            Open Firefox in the container and navigate to the specified URL in a new tab.
+            """
+        ```
 
-**Arguments**:
-- **keys** *(list[str])*: A list of keys to press. Example: `["CTRL", "f"]` for Ctrl+F.
+        **Arguments**:
+        - **url** *(str)*: The URL to navigate to (e.g., `https://example.com`).
 
-**Behavior**:
-- Executes a keypress
-- Supports shortcuts like Ctrl+Fs
+        **Behavior**:
+        - Opens Firefox in the container and navigates to the specified URL in a new tab
 
-**Returns**:
-- `None`
+        **Returns**:
+        - `None`
+    </Accordion>
+    <Accordion icon="message-bot" title="get_page_html(query)">
+        ```python
+        def get_page_html(self, query="return document.documentElement.outerHTML;"):
+            """
+            Get the HTML content of the currently displayed webpage using Marionette.
+            
+            Args:
+                query: JavaScript query to retrieve the HTML content. Defaults to retrieving the full DOM HTML.
+            
+            Returns:
+                str: The HTML content of the current page, or an error message if retrieval fails.
+            """
+        ```
 
+        **Arguments**:
+        - **query** *(str)*: JavaScript query to retrieve the HTML content.
+        Defaults to `'return document.documentElement.outerHTML;'`, which returns the full DOM HTML.
 
-</Accordion>
-<Accordion icon="message-bot" title="type_text(text: str)">
+        **Behavior**:
+        - Uses the underlying agent to execute a JavaScript query and retrieve the current webpage's HTML content.
 
-```python
-def type_text(self, text: str) -> None:
-    """
-    Type a string of text (like using a keyboard) at the current cursor location.
-    """
-```
+        **Returns**:
+        - *(str)*: The HTML content of the current page, or an error message if retrieval fails.
+    </Accordion>
 
-**Arguments**:
-- **text** *(str)*: The string of text to type.
-
-**Behavior**:
-- Types a string of text at the current cursor location.
-
-**Returns**:
-- `None`
-
-
-</Accordion>
-<Accordion icon="message-bot" title="get_screenshot()">
-```python
-def get_screenshot(self) -> str:
-    """
-    Takes a screenshot of the current desktop.
-    Returns the base64-encoded PNG screenshot.
-    """
-```
-
-**Behavior**:
-- Takes a screenshot as a png
-- Captures the base64 result.
-- Returns that base64 string.
-
-**Returns**:
-- *(str)*: A base64-encoded PNG screenshot.
-
-**Exceptions**:
-- **RuntimeError** if the screenshot command fails.
-</Accordion>
-<Accordion icon="message-bot" title="goto(url)">
-```python
-def goto(self, url: str) -> None:
-    """
-    Open Firefox in the container and navigate to the specified URL in a new tab.
-    """
-```
-
-**Arguments**:
-- **url** *(str)*: The URL to navigate to (e.g., `https://example.com`).
-
-**Behavior**:
-- Opens Firefox in the container and navigates to the specified URL in a new tab
-
-**Returns**:
-- `None`
-</Accordion>
 </AccordionGroup>

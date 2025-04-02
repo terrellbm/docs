@@ -1,7 +1,7 @@
 ---
 title: 'OpenAI Agent Integration'
 description: 'Integrate OpenAI with your desktop client for higher-level agent logic.'
-icon: 'gear'
+icon: 'robot'
 ---
 
 ### **`action()`**
@@ -10,7 +10,7 @@ icon: 'gear'
 
 ### Purpose
 
-The `action` function lets you control the desktop environment via an agent, managing commands, user inputs, and security checks in a streamlined way.
+The `action` function lets you control the desktop environment via an agent, managing commands, user inputs, security checks, and tool calls in a streamlined way.
 
 ### Arguments
 
@@ -29,6 +29,12 @@ The `action` function lets you control the desktop environment via an agent, man
   - **`needs_input_handler(messages)`**: Collects user input.
   - **`needs_safety_check_handler(safety_checks, pending_call)`**: Approves security checks.
   - **`error_handler(error_message)`**: Manages errors.
+
+- **`tools`** *(list, optional)*:  
+  List of available tools for the agent to use when executing actions.
+
+- **`function_map`** *(dict, optional)*:  
+  Dictionary mapping tool call identifiers to actual callable functions.
 
 ### How it works
 
@@ -82,6 +88,25 @@ agent.action(
     error_handler=lambda error: print("Error:", error),
     needs_input_handler=lambda msgs: input(f"Agent asks: {msgs}"),
     needs_safety_check_handler=lambda checks, call: input(f"Approve {checks}? (y/N): ").lower() == "y"
+)
+```
+
+### Using Tools and Function Map
+
+When providing tools, ensure each tool has a corresponding callable in the `function_map`. The agent will invoke these callables based on the tool call identifiers:
+
+```python
+tools = ["web_search", "calculator"]
+
+function_map = {
+    "web_search": web_search_function,
+    "calculator": calculator_function
+}
+
+agent.action(
+    input_text="What is 42 divided by 7?",
+    tools=tools,
+    function_map=function_map
 )
 ```
 

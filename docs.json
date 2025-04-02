@@ -25,7 +25,9 @@
             "pages": [
               "examples/linkedin_example",
               "examples/amazon_example",
-              "examples/form_filling_example"
+              "examples/form_filling_example",
+              "examples/concurrency_example",
+              "examples/tool_call_example"
             ]
           },
           {
@@ -34,13 +36,7 @@
               "desktop-client/desktop",
               "desktop-client/desktop_actions",
               "desktop-client/openai_agent_integration",
-              "desktop-client/custom_docker_container"
-            ]
-          },
-          
-          {
-            "group": "Self Hosting",
-            "pages": [
+              "desktop-client/custom_docker_container",
               "essentials/web_api"
             ]
           }
