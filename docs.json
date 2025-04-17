@@ -37,7 +37,8 @@
               "desktop-client/desktop_actions",
               "desktop-client/openai_agent_integration",
               "desktop-client/custom_docker_container",
-              "essentials/web_api"
+              "essentials/web_api",
+              "essentials/telemetry"
             ]
           }
         ]
